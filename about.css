@@ -57,7 +57,7 @@ body {
 .image {
     width: 35%; /* Increased the width */
     height: 400px; /* Increased the height */
-    background-image: url('images/about.jpg');
+    background-image: url('images/about.JPG');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
