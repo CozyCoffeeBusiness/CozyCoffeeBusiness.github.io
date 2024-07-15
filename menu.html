@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>CozyCoffee</title>
+</head>
+<body>
+    <div class="menu">
+        <div class="navbar">
+            <img src="images/logo.png" style="border-radius: 70%; height: 75px;">
+            <strong>
+                <a href="HCI.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <div class="dropdown">
+                    <a href="shop.html" class="dropbtn">Shop</a>
+                    <div class="dropdown-content">
+                        <a href="espresso.html">Espresso</a>
+                        <a href="nonespresso.html">Non-Espresso</a>
+                        <a href="desserts.html">Desserts</a>
+                    </div>
+                </div>
+                <a href="contact.html">Contact Us</a>
+                <a href="about.html">About</a>
+            </strong>
+            <a href="#" id="cart-icon" onclick="openCart()"> <i class='fas fa-coffee'></i> <span id="cart-count">0</span></a>
+        </div>
+        <br>
+        <br>
+        <div class="head">
+            <h1>CozyCoffee Menu</h1>
+        </div>
+
+        <div class="mframe">
+            <div class="eframe">
+                <div class="eframehead">
+                    <strong>
+                        <p>Espresso Based</p>
+                    </strong>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>16oz</th>
+                            <th>22oz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- COFFEE -->
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Americano</p>
+                                <img src="images/americano.jpg" alt="Americano" class="menu-image hidden">
+                                <p class="description">A strong, bold coffee made with espresso and hot water.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Ristretto</p>
+                                <img src="images/ristretto_coffee.jpg" alt="Ristretto" class="menu-image hidden">
+                                <p class="description">A concentrated shot of espresso with a strong flavor.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Drip Coffee</p>
+                                <img src="images/drip_coffee.jpg" alt="Drip Coffee" class="menu-image hidden">
+                                <p class="description">Brewed by pouring hot water over ground coffee in a filter.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Hotbrew Coffee</p>
+                                <img src="images/hotbrew_coffee.jpg" alt="Hotbrew Coffee" class="menu-image hidden">
+                                <p class="description">Coffee brewed with hot water using various methods.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Turkish Coffee</p>
+                                <img src="images/turkish_coffee.jpg" alt="Turkish Coffee" class="menu-image hidden">
+                                <p class="description">Strong coffee brewed with very finely ground beans, often with sugar, and served unfiltered.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Cappuccino</p>
+                                <img src="images/cappuccino.jpg" alt="Cappuccino" class="menu-image hidden">
+                                <p class="description">A perfect blend of espresso, steamed milk, and foam.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Caramel Macchiato</p>
+                                <img src="images/caramel_macchiato.jpg" alt="Caramel Macchiato" class="menu-image hidden">
+                                <p class="description">Espresso with steamed milk and caramel syrup.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Matcha</p>
+                                <img src="images/matcha.jfif" alt="Matcha" class="menu-image hidden">
+                                <p class="description">A rich and creamy blend of matcha and milk.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Hazelnut Latte</p>
+                                <img src="images/hazelnut_latte.jpg" alt="Hazelnut Latte" class="menu-image hidden">
+                                <p class="description">Espresso with steamed milk and hazelnut syrup.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ncframe">
+                <div class="ncframehead">
+                    <strong>
+                        <p>Non-Coffee</p>
+                    </strong>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>16oz</th>
+                            <th>22oz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- NONCOFFEE -->
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>White Chocolate</p>
+                                <img src="images/white_chocolate.jpg" alt="White Chocolate" class="menu-image hidden">
+                                <p class="description">Smooth and creamy white chocolate beverage.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Green Tea Latte</p>
+                                <img src="images/green_tea_latte.jpg" alt="Green Tea Latte" class="menu-image hidden">
+                                <p class="description">A blend of green tea and steamed milk.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Lemon Tea</p>
+                                <img src="images/lemon_tea.jpg" alt="Lemon Tea" class="menu-image hidden">
+                                <p class="description">Refreshing tea with a hint of lemon.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Vanilla Cream</p>
+                                <img src="images/vanilla_cream.jpg" alt="Vanilla Cream" class="menu-image hidden">
+                                <p class="description">A creamy blend of milk and vanilla syrup.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Mocha</p>
+                                <img src="images/mocha.jpg" alt="Mocha" class="menu-image hidden">
+                                <p class="description">Coffee with chocolate and steamed milk.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Hot Chocolate</p>
+                                <img src="images/hot_chocolate.jpg" alt="Hot Chocolate" class="menu-image hidden">
+                                <p class="description">Warm drink made with chocolate and milk or water.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Cold Brew</p>
+                                <img src="images/cold_brew.jpg" alt="Cold Brew" class="menu-image hidden">
+                                <p class="description">Coffee brewed cold for a smooth, less acidic taste.</p>
+                            </td>
+                            <td>₱80</td>
+                            <td>₱100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="dcframe">
+                <div class="dcframehead">
+                    <strong>
+                        <p>Desserts</p>
+                    </strong>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- DESSERTS -->
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Pancakes</p>
+                                <img src="images/pancakes.jfif" alt="Pancakes" class="menu-image hidden">
+                                <p class="description">Fluffy pancakes served with syrup.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Waffles</p>
+                                <img src="images/waffles.jfif" alt="Waffles" class="menu-image hidden">
+                                <p class="description">Crispy waffles topped with your choice of syrup.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Ice Cream</p>
+                                <img src="images/ice_cream.jfif" alt="Ice Cream" class="menu-image hidden">
+                                <p class="description">Creamy ice cream in various flavors.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Churros</p>
+                                <img src="images/churros.jfif" alt="Churros" class="menu-image hidden">
+                                <p class="description">Crispy churros served with a side of chocolate sauce.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Red Velvet</p>
+                                <img src="images/red_velvet.jpg" alt="Red Velvet" class="menu-image hidden">
+                                <p class="description">Moist cake with cocoa and cream cheese frosting.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Cinnamon Roll</p>
+                                <img src="images/cinnamon_roll.jpg" alt="Cinnamon Roll" class="menu-image hidden">
+                                <p class="description">Sweet pastry with cinnamon and icing.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Lemon Bars</p>
+                                <img src="images/lemon_bars.jpg" alt="Lemon Bars" class="menu-image hidden">
+                                <p class="description">Tangy dessert with lemon filling on shortbread.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                        <tr>
+                            <td class="menu-item" onclick="toggleImage(this)">
+                                <p>Carrot Cake</p>
+                                <img src="images/carrot_cake.jpg" alt="Carrot Cake" class="menu-image hidden">
+                                <p class="description">Moist cake with carrots, spices, and cream cheese frosting.</p>
+                            </td>
+                            <td>₱100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+     <!-- CART MODAL -->
+    <div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+        <span class="close" onclick="closeCart()">&times;</span>
+        <h2>Cart</h2>
+        <div id="cart-items"></div>
+        <button onclick="checkout()">Checkout</button>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div>
+</div>
+<!-- Checkout Form Modal -->
+<div id="checkoutModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCheckoutForm()">&times;</span>
+        <h2>Checkout</h2>
+        <form id="checkoutForm" onsubmit="return handleCheckout()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="address">Delivery Address:</label>
+            <input type="text" id="address" name="address" required>
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" required>
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</div>
+<!-- Add Size and Quantity Modal -->
+<div id="sizeQuantityModal" class="size-quantity-modal">
+    <div class="size-quantity-modal-content">
+        <span class="close" onclick="closeSizeQuantityModal()">&times;</span>
+        <h2>Select Size and Quantity</h2>
+        <div>
+            <button onclick="selectSize('16oz')">16oz</button>
+            <button onclick="selectSize('22oz')">22oz</button>
+        </div>
+        <div class="quantity-controls">
+            <button onclick="decreaseQuantityModal()">-</button>
+            <span id="modal-quantity">1</span>
+            <button onclick="increaseQuantityModal()">+</button>
+        </div>
+        <button onclick="addSelectedItemToCart()">Add to Cart</button>
+    </div>
+</div>
+<!-- Quantity Modal -->
+<div id="quantityModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeQuantityModal()">&times;</span>
+        <div class="quantity-modal-content">
+            <h3>Select Quantity</h3>
+            <div class="quantity-controls">
+                <button onclick="decreaseQuantityOnlyModal()">-</button>
+                <span id="modal-quantity-only">1</span>
+                <button onclick="increaseQuantityOnlyModal()">+</button>
+            </div>
+            <button onclick="addSelectedItemToCartWithoutSize()">Add to Cart</button>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "iRECcVTmG21e9bs5Z",
+      });
+   })();
+</script>
+    <script src="shop.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            emailjs.init("iRECcVTmG21e9bs5Z"); // Replace with your actual user ID
+        });
+
+        function checkout() {
+            let orderDetails = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                orderDetails += `${item.name} - ${item.size} - Quantity: ${item.quantity} - Price: ₱${item.price} - Subtotal: ₱${item.price * item.quantity}\n`;
+                total += item.price * item.quantity;
+            });
+
+            orderDetails += `\nTotal: ₱${total}`;
+
+            const templateParams = {
+                to_name: 'Customer',
+                from_name: 'Cozy Coffee',
+                message: orderDetails
+            };
+
+            console.log('Sending email with params:', templateParams);
+
+            emailjs.send('service_lxkquwi', 'template_08qnakc', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Order sent successfully!', response.status, response.text);
+                    cart = [];
+                    saveCart();
+                    updateCartCount();
+                    closeCart();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send order. Please try again.');
+                });
+        }
+    </script>
+    <script>
+        function toggleImage(element) {
+            const image = element.querySelector('.menu-image');
+            if (image) {
+                image.classList.toggle('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

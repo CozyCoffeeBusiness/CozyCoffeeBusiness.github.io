@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Ginyard Coffee</title>
+</head>
+<body>
+    <div class="navbar">
+        <img src="images/logo.png" style="border-radius: 70%; height: 75px;">
+        <strong>
+            <a href="HCI.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <div class="dropdown">
+                <a href="shop.html" class="dropbtn">Shop</a>
+                <div class="dropdown-content">
+                    <a href="espresso.html">Espresso</a>
+                    <a href="nonespresso.html">Non-Espresso</a>
+                    <a href="desserts.html">Desserts</a>
+                </div>
+            </div>
+            <a href="contact.html">Contact Us</a>
+            <a href="about.html">About</a>
+        </strong>
+        <a href="#" id="cart-icon" onclick="openCart()"> <i class='fas fa-coffee'></i> <span id="cart-count">0</span></a>
+    </div>
+
+    <section class="products" id="products">
+        <h1 class="heading"> <i class='fas fa-coffee'></i> Espresso <i class='fas fa-coffee'></i> </h1>
+        <div class="box-container">
+            <!-- Coffee -->
+            <div class="box">
+                <img src="images/americano.jpg" alt="Americano">
+                <div class="content">
+                    <h3>Americano</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Americano', price: 80, image: 'americano.jpg'})">Add to Cart</button>
+
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/ristretto_coffee.jpg" alt="Ristretto Coffee">
+                <div class="content">
+                    <h3>Ristretto Coffee</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Ristretto Coffee', price: 80, image: 'ristretto_coffee.jpg'})">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/cappuccino.jpg" alt="Cappuccino">
+                <div class="content">
+                    <h3>Cappuccino</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Cappuccino', price: 80, image: 'cappuccino.jpg'})">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/drip_coffee.jpg" alt="Drip Coffee">
+                <div class="content">
+                    <h3>Drip Coffee</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Drip Cofee', price: 80, image: 'drip_coffee.jpg'})">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/hotbrew_coffee.jpg" alt="Hotbrew Coffee">
+                <div class="content">
+                    <h3>Hotbrew Coffee</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Hotbrew Coffee', price: 80, image: 'hotbrew_coffee.jpg'})">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/turkish_coffee.jpg" alt="Turkish Coffee">
+                <div class="content">
+                    <h3>Turkish Coffee</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Turkish', price: 80, image: 'turkish_coffee.jpg'})">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/caramel_macchiato.jpg" alt="Caramel Macchiato">
+                <div class="content">
+                    <h3>Caramel Macchiato</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Caramel Macchiato', price: 80, image: 'caramel_macchiato.jpg'})">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/matcha.jfif" alt="Matcha">
+                <div class="content">
+                    <h3>Matcha</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Matcha', price: 80, image: 'matcha.jfif'})">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/hazelnut_latte.jpg" alt="Hazelnut Latte">
+                <div class="content">
+                    <h3>Hazelnut Latte</h3>
+                    <div class="price">₱80 - ₱100</div>
+                    <button class="btn add-to-cart" onclick="openSizeQuantityModal({name: 'Hazelnut Latte', price: 80, image: 'hazelnut_latte.jpg'})">Add to Cart</button>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+    </section>
+     <!-- CART MODAL -->
+    <div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+        <span class="close" onclick="closeCart()">&times;</span>
+        <h2>Cart</h2>
+        <div id="cart-items"></div>
+        <button onclick="checkout()">Checkout</button>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div>
+</div>
+<!-- Checkout Form Modal -->
+<div id="checkoutModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCheckoutForm()">&times;</span>
+        <h2>Checkout</h2>
+        <form id="checkoutForm" onsubmit="return handleCheckout()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="address">Delivery Address:</label>
+            <input type="text" id="address" name="address" required>
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" required>
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</div>
+<!-- Add Size and Quantity Modal -->
+<div id="sizeQuantityModal" class="size-quantity-modal">
+    <div class="size-quantity-modal-content">
+        <span class="close" onclick="closeSizeQuantityModal()">&times;</span>
+        <h2>Select Size and Quantity</h2>
+        <div>
+            <button onclick="selectSize('16oz')">16oz</button>
+            <button onclick="selectSize('22oz')">22oz</button>
+        </div>
+        <div class="quantity-controls">
+            <button onclick="decreaseQuantityModal()">-</button>
+            <span id="modal-quantity">1</span>
+            <button onclick="increaseQuantityModal()">+</button>
+        </div>
+        <button onclick="addSelectedItemToCart()">Add to Cart</button>
+    </div>
+</div>
+<!-- Quantity Modal -->
+<div id="quantityModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeQuantityModal()">&times;</span>
+        <div class="quantity-modal-content">
+            <h3>Select Quantity</h3>
+            <div class="quantity-controls">
+                <button onclick="decreaseQuantityOnlyModal()">-</button>
+                <span id="modal-quantity-only">1</span>
+                <button onclick="increaseQuantityOnlyModal()">+</button>
+            </div>
+            <button onclick="addSelectedItemToCartWithoutSize()">Add to Cart</button>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "iRECcVTmG21e9bs5Z",
+      });
+   })();
+</script>
+    <script src="shop.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            emailjs.init("iRECcVTmG21e9bs5Z"); // Replace with your actual user ID
+        });
+
+        function checkout() {
+            let orderDetails = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                orderDetails += `${item.name} - ${item.size} - Quantity: ${item.quantity} - Price: ₱${item.price} - Subtotal: ₱${item.price * item.quantity}\n`;
+                total += item.price * item.quantity;
+            });
+
+            orderDetails += `\nTotal: ₱${total}`;
+
+            const templateParams = {
+                to_name: 'Customer',
+                from_name: 'Cozy Coffee',
+                message: orderDetails
+            };
+
+            console.log('Sending email with params:', templateParams);
+
+            emailjs.send('service_lxkquwi', 'template_08qnakc', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Order sent successfully!', response.status, response.text);
+                    cart = [];
+                    saveCart();
+                    updateCartCount();
+                    closeCart();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send order. Please try again.');
+                });
+        }
+    </script>
+
+</body>
+</html>
