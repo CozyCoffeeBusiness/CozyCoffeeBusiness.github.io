@@ -153,9 +153,14 @@ function decreaseQuantity(name) {
     updateCartCount();
 }
 
-function checkout() {
+function handleCheckout() {
+    const houseNumber = document.getElementById('customer-house-number').value;
+    const barangay = document.getElementById('customer-barangay').value;
+    const city = document.getElementById('customer-city').value;
+    const contactNumber = document.getElementById('customer-contact').value;
+
     // Collect order details
-    let orderDetails = '';
+    let orderDetails = `Customer Address:\nHouse Number/Street: ${houseNumber}\nBarangay: ${barangay}\nCity: ${city}\nContact Number: +63${contactNumber}\n\nOrder Details:\n`;
     let total = 0;
 
     cart.forEach(item => {
@@ -172,18 +177,32 @@ function checkout() {
         message: orderDetails
     };
 
+    console.log('Sending email with params:', templateParams);
+
     emailjs.send('service_lxkquwi', 'template_08qnakc', templateParams)
         .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
             alert('Order sent successfully!', response.status, response.text);
             cart = [];
             saveCart();
             updateCartCount();
-            closeCart();
+            closeCheckoutForm();
         }, function(error) {
             console.log('FAILED...', error);
             alert('Failed to send order. Please try again.');
         });
+
+    return false; // Prevent form submission
 }
+
+function openCheckoutForm() {
+    document.getElementById('checkoutModal').style.display = 'block';
+}
+
+function closeCheckoutForm() {
+    document.getElementById('checkoutModal').style.display = 'none';
+}
+
 
 function clearCart() {
     cart = [];
