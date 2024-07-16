@@ -274,20 +274,18 @@ function closeCheckoutForm() {
     document.getElementById('checkoutModal').style.display = 'none';
 }
 
-function handleCheckout() {
-    // Collect user information
-    const name = document.getElementById('name').value;
-    const address = document.getElementById('address').value;
-    const contact = document.getElementById('contact').value;
+document.getElementById('customer-contact').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
 
-    // Validate the form
-    if (!name || !address || !contact) {
-        alert('Please fill in all fields.');
-        return false;
-    }
+function handleCheckout() {
+    const houseNumber = document.getElementById('customer-house-number').value;
+    const barangay = document.getElementById('customer-barangay').value;
+    const city = document.getElementById('customer-city').value;
+    const contactNumber = document.getElementById('customer-contact').value;
 
     // Collect order details
-    let orderDetails = '';
+    let orderDetails = `Customer Address:\nHouse Number/Street: ${houseNumber}\nBarangay: ${barangay}\nCity: ${city}\nContact Number: +63${contactNumber}\n\nOrder Details:\n`;
     let total = 0;
 
     cart.forEach(item => {
@@ -296,23 +294,24 @@ function handleCheckout() {
     });
 
     orderDetails += `\nTotal: ₱${total}`;
-    orderDetails += `\n\nName: ${name}\nAddress: ${address}\nContact: ${contact}`;
 
     // EmailJS parameters
     const templateParams = {
-        to_name: name,
+        to_name: 'Customer', // You can change this to the customer's name if available
         from_name: 'Cozy Coffee', // Your business name
         message: orderDetails
     };
 
-    // Send email using EmailJS
+    console.log('Sending email with params:', templateParams);
+
     emailjs.send('service_lxkquwi', 'template_08qnakc', templateParams)
         .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
             alert('Order sent successfully!', response.status, response.text);
             cart = [];
             saveCart();
             updateCartCount();
-            closeCheckoutForm();
+                        closeCheckoutForm();
         }, function(error) {
             console.log('FAILED...', error);
             alert('Failed to send order. Please try again.');
@@ -320,6 +319,20 @@ function handleCheckout() {
 
     return false; // Prevent form submission
 }
+
+function openCheckoutForm() {
+    document.getElementById('checkoutModal').style.display = 'block';
+}
+
+function closeCheckoutForm() {
+    document.getElementById('checkoutModal').style.display = 'none';
+}
+
+// Adding event listener to ensure the contact number input only accepts numeric values
+document.getElementById('customer-contact').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
 
 window.onclick = function(event) {
     const sizeQuantityModal = document.getElementById('sizeQuantityModal');
