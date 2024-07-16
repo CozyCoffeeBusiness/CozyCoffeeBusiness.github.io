@@ -153,17 +153,9 @@ function decreaseQuantity(name) {
     updateCartCount();
 }
 
-function generateOrderNumber() {
-    const now = new Date();
-    return 'ORDER' + now.getTime();
-}
-
 function checkout() {
-    // Generate a unique order number
-    const orderNumber = generateOrderNumber();
-
     // Collect order details
-    let orderDetails = `Order Number: ${orderNumber}\n\n`;
+    let orderDetails = '';
     let total = 0;
 
     cart.forEach(item => {
@@ -173,56 +165,25 @@ function checkout() {
 
     orderDetails += `\nTotal: ₱${total}`;
 
-    // Collect customer information
-    const name = document.getElementById('customer-name').value.trim();
-    const houseNumber = document.getElementById('customer-house-number').value.trim();
-    const barangay = document.getElementById('customer-barangay').value.trim();
-    const city = document.getElementById('customer-city').value.trim();
-    const contact = document.getElementById('customer-contact').value.trim();
-
-    if (!name || !houseNumber || !barangay || !city || !contact) {
-        alert('Please provide your name, complete address, and contact number.');
-        return;
-    }
-
-    if (contact.length !== 10 || isNaN(contact)) {
-        alert('Please provide a valid 10-digit contact number.');
-        return;
-    }
-
-    const address = `${houseNumber}, ${barangay}, ${city}`;
-    const fullContactNumber = `+63${contact}`;
-    orderDetails += `\n\nCustomer Name: ${name}\nCustomer Address: ${address}\nCustomer Contact: ${fullContactNumber}`;
-
     // EmailJS parameters
     const templateParams = {
-        to_name: name, // Use customer's name for personalized greeting
+        to_name: 'Customer', // You can change this to the customer's name if available
         from_name: 'Cozy Coffee', // Your business name
-        message: orderDetails,
-        customer_name: name, // Pass customer's name to EmailJS template
-        customer_house_number: houseNumber, // Pass customer's house number/street to EmailJS template
-        customer_barangay: barangay, // Pass customer's barangay to EmailJS template
-        customer_city: city, // Pass customer's city to EmailJS template
-        customer_contact: fullContactNumber, // Pass customer's full contact number to EmailJS template
-        order_number: orderNumber // Pass the order number to EmailJS template
+        message: orderDetails
     };
-
-    console.log('Sending email with params:', templateParams);
 
     emailjs.send('service_lxkquwi', 'template_08qnakc', templateParams)
         .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
             alert('Order sent successfully!', response.status, response.text);
-            cart = []; // Clear cart after successful order
-            saveCart(); // Save empty cart in localStorage
-            updateCartCount(); // Update cart count display
-            closeCart(); // Close the cart modal
+            cart = [];
+            saveCart();
+            updateCartCount();
+            closeCart();
         }, function(error) {
             console.log('FAILED...', error);
             alert('Failed to send order. Please try again.');
         });
 }
-
 
 function clearCart() {
     cart = [];
@@ -274,18 +235,20 @@ function closeCheckoutForm() {
     document.getElementById('checkoutModal').style.display = 'none';
 }
 
-document.getElementById('customer-contact').addEventListener('input', function(e) {
-    this.value = this.value.replace(/[^0-9]/g, '');
-});
-
 function handleCheckout() {
-    const houseNumber = document.getElementById('customer-house-number').value;
-    const barangay = document.getElementById('customer-barangay').value;
-    const city = document.getElementById('customer-city').value;
-    const contactNumber = document.getElementById('customer-contact').value;
+    // Collect user information
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const contact = document.getElementById('contact').value;
+
+    // Validate the form
+    if (!name || !address || !contact) {
+        alert('Please fill in all fields.');
+        return false;
+    }
 
     // Collect order details
-    let orderDetails = `Customer Address:\nHouse Number/Street: ${houseNumber}\nBarangay: ${barangay}\nCity: ${city}\nContact Number: +63${contactNumber}\n\nOrder Details:\n`;
+    let orderDetails = '';
     let total = 0;
 
     cart.forEach(item => {
@@ -294,24 +257,23 @@ function handleCheckout() {
     });
 
     orderDetails += `\nTotal: ₱${total}`;
+    orderDetails += `\n\nName: ${name}\nAddress: ${address}\nContact: ${contact}`;
 
     // EmailJS parameters
     const templateParams = {
-        to_name: 'Customer', // You can change this to the customer's name if available
+        to_name: name,
         from_name: 'Cozy Coffee', // Your business name
         message: orderDetails
     };
 
-    console.log('Sending email with params:', templateParams);
-
+    // Send email using EmailJS
     emailjs.send('service_lxkquwi', 'template_08qnakc', templateParams)
         .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
             alert('Order sent successfully!', response.status, response.text);
             cart = [];
             saveCart();
             updateCartCount();
-                        closeCheckoutForm();
+            closeCheckoutForm();
         }, function(error) {
             console.log('FAILED...', error);
             alert('Failed to send order. Please try again.');
@@ -319,20 +281,6 @@ function handleCheckout() {
 
     return false; // Prevent form submission
 }
-
-function openCheckoutForm() {
-    document.getElementById('checkoutModal').style.display = 'block';
-}
-
-function closeCheckoutForm() {
-    document.getElementById('checkoutModal').style.display = 'none';
-}
-
-// Adding event listener to ensure the contact number input only accepts numeric values
-document.getElementById('customer-contact').addEventListener('input', function(e) {
-    this.value = this.value.replace(/[^0-9]/g, '');
-});
-
 
 window.onclick = function(event) {
     const sizeQuantityModal = document.getElementById('sizeQuantityModal');
