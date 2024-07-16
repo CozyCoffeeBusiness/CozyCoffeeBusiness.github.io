@@ -153,9 +153,17 @@ function decreaseQuantity(name) {
     updateCartCount();
 }
 
+function generateOrderNumber() {
+    const now = new Date();
+    return 'ORDER' + now.getTime();
+}
+
 function checkout() {
+    // Generate a unique order number
+    const orderNumber = generateOrderNumber();
+
     // Collect order details
-    let orderDetails = '';
+    let orderDetails = `Order Number: ${orderNumber}\n\n`;
     let total = 0;
 
     cart.forEach(item => {
@@ -165,25 +173,56 @@ function checkout() {
 
     orderDetails += `\nTotal: ₱${total}`;
 
+    // Collect customer information
+    const name = document.getElementById('customer-name').value.trim();
+    const houseNumber = document.getElementById('customer-house-number').value.trim();
+    const barangay = document.getElementById('customer-barangay').value.trim();
+    const city = document.getElementById('customer-city').value.trim();
+    const contact = document.getElementById('customer-contact').value.trim();
+
+    if (!name || !houseNumber || !barangay || !city || !contact) {
+        alert('Please provide your name, complete address, and contact number.');
+        return;
+    }
+
+    if (contact.length !== 10 || isNaN(contact)) {
+        alert('Please provide a valid 10-digit contact number.');
+        return;
+    }
+
+    const address = `${houseNumber}, ${barangay}, ${city}`;
+    const fullContactNumber = `+63${contact}`;
+    orderDetails += `\n\nCustomer Name: ${name}\nCustomer Address: ${address}\nCustomer Contact: ${fullContactNumber}`;
+
     // EmailJS parameters
     const templateParams = {
-        to_name: 'Customer', // You can change this to the customer's name if available
+        to_name: name, // Use customer's name for personalized greeting
         from_name: 'Cozy Coffee', // Your business name
-        message: orderDetails
+        message: orderDetails,
+        customer_name: name, // Pass customer's name to EmailJS template
+        customer_house_number: houseNumber, // Pass customer's house number/street to EmailJS template
+        customer_barangay: barangay, // Pass customer's barangay to EmailJS template
+        customer_city: city, // Pass customer's city to EmailJS template
+        customer_contact: fullContactNumber, // Pass customer's full contact number to EmailJS template
+        order_number: orderNumber // Pass the order number to EmailJS template
     };
+
+    console.log('Sending email with params:', templateParams);
 
     emailjs.send('service_lxkquwi', 'template_08qnakc', templateParams)
         .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
             alert('Order sent successfully!', response.status, response.text);
-            cart = [];
-            saveCart();
-            updateCartCount();
-            closeCart();
+            cart = []; // Clear cart after successful order
+            saveCart(); // Save empty cart in localStorage
+            updateCartCount(); // Update cart count display
+            closeCart(); // Close the cart modal
         }, function(error) {
             console.log('FAILED...', error);
             alert('Failed to send order. Please try again.');
         });
 }
+
 
 function clearCart() {
     cart = [];
